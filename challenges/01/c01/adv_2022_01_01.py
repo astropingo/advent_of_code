@@ -3,7 +3,7 @@ import sys
 sys.path.append("../../../utils")
 import import_input
 
-di = import_input.DailyImput("mvp")
+di = import_input.DailyImput(usr="mvp")
 input_file = di.get_input()
 
 # Challenge

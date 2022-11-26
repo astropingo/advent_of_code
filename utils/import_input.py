@@ -4,7 +4,7 @@ from pathlib import Path
 ifn = "input"
 
 class DailyImput:
-    def __init__(self, usr):
+    def __init__(self, usr=""):
         self.ifn = ifn
         self.usr = usr
         self.current_wd = Path().absolute()
