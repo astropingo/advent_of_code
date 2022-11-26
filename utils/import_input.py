@@ -2,10 +2,9 @@ from pathlib import Path
 
 # input folder name and user
 ifn = "input"
-usr = "mvp"
 
 class DailyImput:
-    def __init__(self):
+    def __init__(self, usr):
         self.ifn = ifn
         self.usr = usr
         self.current_wd = Path().absolute()
