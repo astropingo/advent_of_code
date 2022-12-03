@@ -25,4 +25,5 @@ def score(play):
     your_points = 1 + your_code.index(you)
     return round_points + your_points
 
-print(sum(map(score, [line for line in input_file])))
+# print(sum(map(score, [line for line in input_file])))
+print(score("A Y"))
