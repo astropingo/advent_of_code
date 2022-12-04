@@ -1,3 +1,6 @@
+import timeit
+starttime = timeit.default_timer()
+
 # Hack to import the input file
 import sys
 sys.path.append("../../../utils")
@@ -13,3 +16,5 @@ def check_overlap(s):
     return (x1 <= x2 and y1 >= y2) or (x1 >= x2 and y1 <= y2)
 
 print(sum(map(check_overlap, [line for line in input_file])))
+
+print("The time difference is :", timeit.default_timer() - starttime)
