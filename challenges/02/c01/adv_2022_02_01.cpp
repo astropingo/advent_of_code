@@ -8,6 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <string>
 
 #define INPUT_FILE "challenges/02/input/vrs_02.txt"
 std::fstream input_file;

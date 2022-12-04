@@ -8,6 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <string>
 
 #define BUFFER_SIZE 81 //amount of characters read per line;
 #define NPOS std::string::npos //return value for substring not found
