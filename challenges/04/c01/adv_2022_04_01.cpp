@@ -43,12 +43,9 @@ int main(int argc, char **argv) {
             fprintf(stderr, "Error reading from: %s.\n", INPUT_FILE);
             return -1;
         } //evaluate limits
-        if (elf1.back()[0] == elf2.back()[0] || elf1.back()[1] == elf2.back()[1])
+        if ((elf1.back()[0] <= elf2.back()[0] && elf1.back()[1] >= elf2.back()[1]) ||
+                (elf2.back()[0] <= elf1.back()[0] && elf2.back()[1] >= elf1.back()[1]))
             answer ++;
-        else if (elf1.back()[0] < elf2.back()[0] && elf1.back()[1] > elf2.back()[1])
-            answer++;
-        else if (elf1.back()[0] > elf2.back()[0] && elf1.back()[1] < elf2.back()[1])
-            answer++;
     }
 
     fprintf(stdout, "answer: %d.\n", answer);
