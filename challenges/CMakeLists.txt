@@ -12,3 +12,6 @@ add_executable(2022-day4-02 04/c02/adv_2022_04_02.cpp)
 
 add_executable(2022-day5-01 05/c01/adv_2022_05_01.cpp)
 add_executable(2022-day5-02 05/c02/adv_2022_05_02.cpp)
+
+add_executable(2022-day6-01 06/c01/adv_2022_06_01.cpp)
+add_executable(2022-day6-02 06/c02/adv_2022_06_02.cpp)
