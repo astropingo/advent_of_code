@@ -5,7 +5,6 @@
  *      Author: vsilva1
  */
 #include <cstdio>
-#include <fstream>
 #include <vector>
 
 #define INPUT_FILE "challenges/05/input/vrs_05.txt"

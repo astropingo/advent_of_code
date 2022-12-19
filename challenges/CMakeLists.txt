@@ -15,3 +15,13 @@ add_executable(2022-day5-02 05/c02/adv_2022_05_02.cpp)
 
 add_executable(2022-day6-01 06/c01/adv_2022_06_01.cpp)
 add_executable(2022-day6-02 06/c02/adv_2022_06_02.cpp)
+
+add_executable(2022-day7-01 07/c01/adv_2022_07_01.cpp)
+target_link_libraries(2022-day7-01 PUBLIC file_list)
+target_include_directories(2022-day7-01 PUBLIC
+                          "${PROJECT_SOURCE_DIR}/lib/include")
+                          
+add_executable(2022-day7-02 07/c02/adv_2022_07_02.cpp)
+target_link_libraries(2022-day7-02 PUBLIC file_list)
+target_include_directories(2022-day7-02 PUBLIC
+                          "${PROJECT_SOURCE_DIR}/lib/include")

@@ -5,7 +5,6 @@
  *      Author: vsilva1
  */
 #include <cstdio>
-#include <fstream>
 #include <string>
 #include <set>
 
