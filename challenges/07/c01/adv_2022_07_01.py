@@ -46,7 +46,6 @@ folder  = {
     "files":{},
     "name":"root",
 }
-folder["this"] = folder
 
 def run_command(commands, current_folder):
     try:
@@ -54,19 +53,17 @@ def run_command(commands, current_folder):
     except StopIteration:
         return 0
     if command == "$ cd /": #it just shows once
-        run_command(commands, current_folder["this"])
+        run_command(commands, current_folder)
     elif command == "$ ls": #doesn't change anything, is just a header for the command list
-        run_command(commands, current_folder["this"]) # ***
+        run_command(commands, current_folder) # ***
     elif command.startswith("dir"): #creates a subfolder if it doesn't exist
         folder_name = command[4:]
         create_folder(folder_name, current_folder) # current_folder is a dict, representing the current folder
-        run_command(commands, current_folder["this"])
-    elif command.startswith("$ cd .."): #goes up one folder
+        run_command(commands, current_folder)
+    elif command.startswith("$ cd .."): # goes up one folder
         run_command(commands, current_folder["parent"])
     elif command.startswith("$ cd"): # goes down one folder
         subfolder_name = command[5:]
-        # run_command(commands, current_folder["subfolders"][subfolder_name])
-        # create_folder(folder_name, current_folder) # create if it doesn't exist already, which it probably does
         current_folder["size"] += run_command(commands, current_folder["subfolders"][subfolder_name]) # run the next command on the subfolder
     elif file_pattern.match(command):
         file_size, file_name = file_pattern.match(command).groups()
@@ -75,10 +72,7 @@ def run_command(commands, current_folder):
             "size":file_size,
             "name":file_name,
         }
-        current_folder["size"] += file_size
-        run_command(commands, current_folder["this"])
-    else:
-        run_command(commands, current_folder["this"])
+        current_folder["size"] += file_size + run_command(commands, current_folder)
     return current_folder["size"]
 
 def create_folder(subfolder_name, current_folder_dict):
@@ -89,13 +83,50 @@ def create_folder(subfolder_name, current_folder_dict):
         "files":{},
         "name":subfolder_name,
     }
-    current_folder_dict["subfolders"][subfolder_name]["this"] = current_folder_dict["subfolders"][subfolder_name]
+    # current_folder_dict["subfolders"][subfolder_name]["this"] = current_folder_dict["subfolders"][subfolder_name]
+
+input69 = [
+"$ cd /",
+"$ ls",
+"dir a",
+"$ cd a",
+"$ ls",
+"dir b",
+"$ cd b",
+"$ ls",
+"dir c",
+"dir d",
+"10 a.txt",
+"20 ba.txt",
+"30 ca.txt",
+"$ cd c",
+"$ ls",
+"30 asd.txt",
+"$ cd ..",
+"$ cd d",
+"$ ls",
+"10 absd.md",
+"90 pjq.m"]
+
+'''
+root (190)
+    a (190)
+        b (60 + 130 = 190)
+            a.txt   10
+            ba.txt  20
+            ca.txt  30
+            c (30)
+                asd.txt   30
+            d (100)
+                absd.md   10
+                pjq.m     90
+'''
 
 def get_commands(command_list):
     for command in command_list:
         yield command.strip()
 
-run_command(get_commands(input_file), folder)
+run_command(get_commands(input69), folder)
 
 def count_sizes_recursively(folder):
     #calculate recursively the sum of the folder size with the sum of all subfolders, but only if the folder or subfolder size is less or equan than 100000
@@ -106,5 +137,4 @@ def count_sizes_recursively(folder):
 
 print(count_sizes_recursively(folder))
 print(f"Root size = {folder['size']}")
-
 print("The time difference is :", timeit.default_timer() - starttime)
