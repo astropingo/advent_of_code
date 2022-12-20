@@ -64,7 +64,9 @@ def run_command(commands, current_folder):
         run_command(commands, current_folder["parent"])
     elif command.startswith("$ cd"): # goes down one folder
         subfolder_name = command[5:]
-        current_folder["size"] += run_command(commands, current_folder["subfolders"][subfolder_name]) # run the next command on the subfolder
+        sub_folders_sum = run_command(commands, current_folder["subfolders"][subfolder_name])
+        current_folder["size"] += sub_folders_sum # run the next command on the subfolder
+        # current_folder["size"] += run_command(commands, current_folder["subfolders"][subfolder_name]) # run the next command on the subfolder
     elif file_pattern.match(command):
         file_size, file_name = file_pattern.match(command).groups()
         file_size = int(file_size)
@@ -126,7 +128,7 @@ def get_commands(command_list):
     for command in command_list:
         yield command.strip()
 
-run_command(get_commands(input69), folder)
+run_command(get_commands(input_file), folder)
 
 def count_sizes_recursively(folder):
     #calculate recursively the sum of the folder size with the sum of all subfolders, but only if the folder or subfolder size is less or equan than 100000
